@@ -28,3 +28,9 @@ function addRandomQuote() {
   const quoteContainer = document.getElementById('quote-container');
   quoteContainer.innerText = quote;
 }
+
+function getMyNameUsingArrowFunctions() {
+  fetch('/data').then(response => response.text()).then((name) => {
+    document.getElementById('name-container').innerText = name;
+  });
+}
