@@ -1,10 +1,75 @@
-#content {
-  margin-left: auto;
-  margin-right: auto;
-  width: 650px;
-  background: #CDEFEE;
-}
-
 #quote-container {
   margin-top: 20px;
+}
+
+h1 {
+  color: black;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 200%;
+  text-align: center;
+}
+
+h3 {
+  color:black;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 200%;
+  text-align: center;
+}
+
+p {
+  color: black;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 100%;
+  text-align: center;
+}
+
+body {
+    background: linear-gradient(-45deg, #FF9AA2, #FFB7B2, #FFDAC1, #E2F0CB, #B5EAD7, #C7CEEA);
+    background-size: 300% 300%;
+    animation: gradient 10s ease infinite;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+button {
+ background-color: black;
+  border: 2px;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: solid;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: white;
+  border: 2px;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: solid;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+ul {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 100%;
+    color: black;
+    text-align: left;
 }
