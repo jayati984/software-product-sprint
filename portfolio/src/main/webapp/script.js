@@ -29,8 +29,23 @@ function addRandomQuote() {
   quoteContainer.innerText = quote;
 }
 
-function getMyName() {
-  fetch('/data').then(response => response.text()).then((name) => {
-    document.getElementById('name-container').innerText = name;
+function getComments() {
+    fetch('/data').then(response => response.json()).then((comment) => {
+
+    const arrayListElement = document.getElementById('comment-container');
+    arrayListElement.innerHTML = '';
+    arrayListElement.appendChild(
+        createListElement('Comment 1: ' + comment.CommentOne));
+    arrayListElement.appendChild(
+        createListElement('Comment 2: ' + comment.CommentTwo));
+    arrayListElement.appendChild(
+        createListElement('Comment 3: ' + comment.CommentThree));
   });
+}
+
+/** Creates an <li> element containing text. */
+function createListElement(text) {
+  const liElement = document.createElement('li');
+  liElement.innerText = text;
+  return liElement;
 }
