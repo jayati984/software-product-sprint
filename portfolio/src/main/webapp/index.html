@@ -41,9 +41,24 @@
       <button onclick="addRandomQuote()">Quotes</button>
       <div id="quote-container"></div>
 
-      <p>Click here to see comments:</p>
+      <!--<p>Click here to see comments:</p>
       <button onclick="getComments()">Comments</button>
-      <div id="comment-container"></div>
+      <div id="comment-container"></div>-->
+
+      <form action="/data" method="POST">
+
+      <p>Comment Section:</p>
+      <textarea name="Comment-Input">Add a comment</textarea>
+      <br/><br/>
+
+      <p>Choose some options:</p>
+      <input type="Checkbox" name="upper-case" value="true"> Upper-case
+      <br/>
+      <input type="Checkbox" name="lower-case" value="true"> Lower-case
+      <br/></br>
+
+      <input type="Submit" />
+    </form>
 
     </div>
   </body>
