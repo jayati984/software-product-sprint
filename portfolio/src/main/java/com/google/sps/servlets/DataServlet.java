@@ -27,18 +27,18 @@ import java.util.ArrayList;
 public class DataServlet extends HttpServlet {
   ArrayList<String> values = new ArrayList<String>();
 
-  /*@Override
+  @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     String json = convertToJson(values);
     
     response.setContentType("application/json;");
     response.getWriter().println(json);
-  }*/
+  }
 
   /**
    * Converts a ServerStats instance into a JSON string using manual String concatentation.
    */
-  /*private String convertToJson(ArrayList<String> values) {
+  private String convertToJson(ArrayList<String> values) {
     String json = "{";
     json += "\"CommentOne\": ";
     json += "\"" + values.get(0) + "\"";
@@ -50,7 +50,7 @@ public class DataServlet extends HttpServlet {
     json += "\"" + values.get(2) + "\"";
     json += "}";
     return json;
-  }*/
+  }
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -60,21 +60,18 @@ public class DataServlet extends HttpServlet {
     boolean lowerCase = Boolean.parseBoolean(getParameter(request, "lower-case", "false"));
 
     // Convert the text to upper case.
-    if (upperCase) {
+    if (upperCase && !lowerCase) {
       text = text.toUpperCase();
     }
 
     // Convert the text to lower case.
-    if (lowerCase) {
+    if (lowerCase && !upperCase) {
       text = text.toLowerCase();
     }
 
-    // Break the text into individual words.
-    String[] words = text.split("\\s*,\\s*");
-
     // Respond with the result.
     response.setContentType("text/html;");
-    response.getWriter().println(Arrays.toString(words));
+    response.getWriter().println(text);
   }
 
   /**
