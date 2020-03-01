@@ -14,6 +14,13 @@
 
 package com.google.sps.servlets;
 
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.SortDirection;
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
+import com.google.gson.Gson;
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,67 +29,54 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Arrays;
 import java.util.ArrayList;
 
-/** Servlet that returns some example content. TODO: modify this file to handle comments data */
+/** Servlet that returns content.*/
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
-  ArrayList<String> values = new ArrayList<String>();
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    String json = convertToJson(values);
     
+    //Comments sorted based on timestamp
+    Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    PreparedQuery results = datastore.prepare(query);
+
+    //ArrayList to store comments only from prepared query
+    ArrayList<String> comments = new ArrayList<String>();
+    for (Entity entity : results.asIterable()) {
+      String commentInput = (String) entity.getProperty("commentInput");
+      
+      //comment to output to main page
+      String newComment = commentInput;
+      comments.add(newComment);
+    }
+
+    String json = convertToJsonUsingGson(comments);
     response.setContentType("application/json;");
     response.getWriter().println(json);
   }
 
-  /**
-   * Converts a ServerStats instance into a JSON string using manual String concatentation.
-   */
-  private String convertToJson(ArrayList<String> values) {
-    String json = "{";
-    json += "\"CommentOne\": ";
-    json += "\"" + values.get(0) + "\"";
-    json += ", ";
-    json += "\"CommentTwo\": ";
-    json += "\"" + values.get(1) + "\"";
-    json += ", ";
-    json += "\"CommentThree\": ";
-    json += "\"" + values.get(2) + "\"";
-    json += "}";
+  //converting comments input strings to JSON using gson
+  private String convertToJsonUsingGson(ArrayList<String> comments) {
+    Gson gson = new Gson();
+    String json = gson.toJson(comments);
     return json;
   }
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    // Get the input from the form.
-    String text = getParameter(request, "Comment-Input", "");
-    boolean upperCase = Boolean.parseBoolean(getParameter(request, "upper-case", "false"));
-    boolean lowerCase = Boolean.parseBoolean(getParameter(request, "lower-case", "false"));
+    String commentInput = request.getParameter("commentInput");
+    long timestamp = System.currentTimeMillis();
 
-    // Convert the text to upper case.
-    if (upperCase && !lowerCase) {
-      text = text.toUpperCase();
-    }
+    //creating entity of Comment kind with commentInput and timestamp properties
+    Entity commentEntity = new Entity("Comment");
+    commentEntity.setProperty("commentInput", commentInput);
+    commentEntity.setProperty("timestamp", timestamp);
 
-    // Convert the text to lower case.
-    if (lowerCase && !upperCase) {
-      text = text.toLowerCase();
-    }
+    //storing created entity in datastore
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    datastore.put(commentEntity);
 
-    // Respond with the result.
-    response.setContentType("text/html;");
-    response.getWriter().println(text);
-  }
-
-  /**
-   * @return the request parameter, or the default value if the parameter
-   *         was not specified by the client
-   */
-  private String getParameter(HttpServletRequest request, String name, String defaultValue) {
-    String value = request.getParameter(name);
-    if (value == null) {
-      return defaultValue;
-    }
-    return value;
+    response.sendRedirect("/index.html");
   }
 }

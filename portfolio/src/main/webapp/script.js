@@ -29,23 +29,23 @@ function addRandomQuote() {
   quoteContainer.innerText = quote;
 }
 
-function getComments() {
-    fetch('/data').then(response => response.json()).then((comment) => {
-
-    const arrayListElement = document.getElementById('comment-container');
-    arrayListElement.innerHTML = '';
-    arrayListElement.appendChild(
-        createListElement('Comment 1: ' + comment.CommentOne));
-    arrayListElement.appendChild(
-        createListElement('Comment 2: ' + comment.CommentTwo));
-    arrayListElement.appendChild(
-        createListElement('Comment 3: ' + comment.CommentThree));
+function loadComments() {
+  fetch('/data').then(response => response.json()).then((comments) => {
+    const commentListElement = document.getElementById('comment-list');
+    comments.forEach((comment) => {
+      commentListElement.appendChild(createCommentElement(comment));
+    })
   });
 }
 
-/** Creates an <li> element containing text. */
-function createListElement(text) {
-  const liElement = document.createElement('li');
-  liElement.innerText = text;
-  return liElement;
+/** Creates an element that represents a task, including its delete button. */
+function createCommentElement(comment) {
+  const commentElement = document.createElement('li');
+  commentElement.className = 'comment';
+
+  const textElement = document.createElement('span');
+  textElement.innerText = comment;
+
+  commentElement.appendChild(textElement);
+  return commentElement;
 }
