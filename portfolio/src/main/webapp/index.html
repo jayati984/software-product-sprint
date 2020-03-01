@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
-  <body>
+  <body onload="loadComments()">
     <div style="text-align:center" id="content">
       <h1>Jayati Patel's Portfolio</h1>
       <p>I am a 3rd year student at Santa Clara University studying Computer Science with 
@@ -41,20 +41,16 @@
       <button onclick="addRandomQuote()">Quotes</button>
       <div id="quote-container"></div>
 
-      <form action="/data" method="POST">
-
+      <form method="POST" action="/data">
       <p>Comment Section:</p>
-      <textarea name="Comment-Input">Add a comment</textarea>
-      <br/><br/>
-
-      <p>Choose some options:</p>
-      <input type="Checkbox" name="upper-case" value="true"> Upper-case
+      <input type="text" name="commentInput" />
       <br/>
-      <input type="Checkbox" name="lower-case" value="true"> Lower-case
-      <br/></br>
+      <button>Submit</button>
+      </form>
+    
+      </hr>
 
-      <input type="Submit" />
-    </form>
+      <ul id="comment-list"></ul>
 
     </div>
   </body>
