@@ -141,19 +141,19 @@ function createMap() {
       'I was born and raised in Harare, Zimbabwe.')
     addLandmark(
       map, 37.354107, -121.955238, 'Santa Clara University',
-      'I am currently a Junior at Santa Clara University studying Computer Science.')
+      'I am currently a Junior at Santa Clara University studying Computer Science.');
     addLandmark(
       map, -17.8211, 31.0210, 'Bishopslea School',
-      'Bishopslea School - The primary school I attended in Harare, Zimbabwe.')
+      'Bishopslea School - The primary school I attended in Harare, Zimbabwe.');
     addLandmark(
       map, -17.7670, 31.0406, 'Arundel School',
-      'Arundel School - The high school I attended in Harare, Zimbabwe.')
+      'Arundel School - The high school I attended in Harare, Zimbabwe.');
     addLandmark(
       map, -20.251868, 57.870755, 'Mauritius',
-      'Mauritus was my first international holiday trip when I was younger.')
+      'Mauritus was my first international holiday trip when I was younger.');
     addLandmark(
       map, 21.7679, 78.8718, 'India',
-      'I travelled to India to meet family and it truly has a great sense of culture.')
+      'I travelled to India to meet family and it truly has a great sense of culture.');
     addLandmark(
       map, 51.30, 32.8718, 'London',
       'One of the great places I have travelled to.');
