@@ -54,7 +54,7 @@ function createCommentElement(comment) {
 function createMap() {
   const map = new google.maps.Map(
       document.getElementById('map'),
-      {center: {lat: 37.422, lng: -122.084}, zoom: 16,
+      {center: {lat: 0.422, lng: 10.084}, zoom: 1,
        styles: [
             {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
             {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
@@ -135,4 +135,37 @@ function createMap() {
               stylers: [{color: '#17263c'}]
             }]
       });
+
+    addLandmark(
+      map, -17.824858, 31.053028, 'Harare, Zimbabwe',
+      'I was born and raised in Harare, Zimbabwe.')
+    addLandmark(
+      map, 37.354107, -121.955238, 'Santa Clara University',
+      'I am currently a Junior at Santa Clara University studying Computer Science.')
+    addLandmark(
+      map, -17.8211, 31.0210, 'Bishopslea School',
+      'Bishopslea School - The primary school I attended in Harare, Zimbabwe.')
+    addLandmark(
+      map, -17.7670, 31.0406, 'Arundel School',
+      'Arundel School - The high school I attended in Harare, Zimbabwe.')
+    addLandmark(
+      map, -20.251868, 57.870755, 'Mauritius',
+      'Mauritus was my first international holiday trip when I was younger.')
+    addLandmark(
+      map, 21.7679, 78.8718, 'India',
+      'I travelled to India to meet family and it truly has a great sense of culture.')
+    addLandmark(
+      map, 51.30, 32.8718, 'London',
+      'One of the great places I have travelled to.');
+}
+
+/** Adds a marker that shows an info window when clicked. */
+function addLandmark(map, lat, lng, title, description) {
+  const marker = new google.maps.Marker(
+      {position: {lat: lat, lng: lng}, map: map, title: title});
+
+  const infoWindow = new google.maps.InfoWindow({content: description});
+  marker.addListener('click', () => {
+    infoWindow.open(map, marker);
+  });
 }
