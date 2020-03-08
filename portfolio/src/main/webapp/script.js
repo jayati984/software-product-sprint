@@ -138,7 +138,7 @@ function createMap() {
 
     addLandmark(
       map, -17.824858, 31.053028, 'Harare, Zimbabwe',
-      'I was born and raised in Harare, Zimbabwe.')
+      'I was born and raised in Harare, Zimbabwe.');
     addLandmark(
       map, 37.354107, -121.955238, 'Santa Clara University',
       'I am currently a Junior at Santa Clara University studying Computer Science.');
