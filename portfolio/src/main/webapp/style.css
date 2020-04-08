@@ -2,29 +2,27 @@
   margin-top: 20px;
 }
 
-h1 {
-  color: black;
-  font-family: "Courier New", Courier, monospace;
-  font-size: 200%;
-  text-align: center;
+.box {
+    border: 2px solid black;
 }
 
-h3 {
-  color:black;
-  font-family: "Courier New", Courier, monospace;
-  font-size: 200%;
+h1 {
+  background-image: none;
+  color: black;
+  font-family: "Bradley Hand", cursive;
+  font-size: 150%;
   text-align: center;
 }
 
 p {
   color: black;
-  font-family: "Courier New", Courier, monospace;
+  font-family: "Optima", sans-serif;
   font-size: 100%;
   text-align: center;
 }
 
 body {
-    background: linear-gradient(-45deg, #FF9AA2, #FFB7B2, #FFDAC1, #E2F0CB, #B5EAD7, #C7CEEA);
+    background: linear-gradient(-45deg, #FF9AA2, #FFB7B2, #FFDAC1, #E2F0CB, #FF9AA2, #FFDAC1);
     background-size: 300% 300%;
     animation: gradient 10s ease infinite;
 }
@@ -42,21 +40,8 @@ body {
 }
 
 button {
- background-color: black;
-  border: 2px;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: solid;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: white;
-  border: 2px;
+  background: none;
+  border: 2px solid black;
   color: black;
   padding: 15px 32px;
   text-align: center;
@@ -67,11 +52,51 @@ button:hover {
   cursor: pointer;
 }
 
+button:hover {
+  background: none;
+  border: 2px solid white;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: solid;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
 ul {
-    font-family: "Courier New", Courier, monospace;
-    font-size: 100%;
+    float: center;
+    list-style-type: none;
+    margin-top: 15px;
+}
+
+ul li {
+    display: inline-block;
+}
+
+ul li a {
+    background-image: linear-gradient(-45deg, #FF9AA2, #FFB7B2, #FFDAC1, #E2F0CB, #FF9AA2, #FFDAC1);
+    animation: gradient 10s ease infinite;
+    text-decoration: none;
     color: black;
-    text-align: left;
+    padding: 5px 20px;
+    border: 1px solid black;
+}
+
+ul li a:hover {
+    background-color: none;
+    background: none;
+    border: 2px solid white;
+    color: white;
+}
+
+ul li ul li {
+    display: none;
+}
+
+ul li:hover ul li {
+    display: block;
 }
 
 #comment-list {
@@ -79,11 +104,12 @@ ul {
 }
 
 .comment {
+  background-image: linear-gradient(white, white);
   border: thin solid black;
   display: flex;
   margin: 10px;
   padding: 10px;
-  width: 300px;
+  width: 400px;
 }
 
 .comment span {
@@ -95,4 +121,19 @@ ul {
   height: 500px;
   width: 500px;
   margin: auto;
+}
+
+#chart-container {
+    width: 600px;
+    height: 500px;
+    margin: auto;
+}
+
+hr {
+    height: 5px;
+}
+
+section {
+    background-image: url(images/pattern.jpg);
+    margin: auto;
 }

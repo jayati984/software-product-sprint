@@ -14,6 +14,9 @@
 
 package com.google.sps.servlets;
 
+import com.google.cloud.language.v1.Document;
+import com.google.cloud.language.v1.LanguageServiceClient;
+import com.google.cloud.language.v1.Sentiment;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 import com.google.appengine.api.datastore.PreparedQuery;
@@ -47,9 +50,16 @@ public class DataServlet extends HttpServlet {
     ArrayList<String> comments = new ArrayList<String>();
     for (Entity entity : results.asIterable()) {
       String commentInput = (String) entity.getProperty("commentInput");
-      
-      //comment to output to main page
-      String newComment = commentInput;
+
+      Document doc =
+        Document.newBuilder().setContent(commentInput).setType(Document.Type.PLAIN_TEXT).build();
+    LanguageServiceClient languageService = LanguageServiceClient.create();
+    Sentiment sentiment = languageService.analyzeSentiment(doc).getDocumentSentiment();
+    float score = sentiment.getScore();
+    languageService.close();
+
+      String str = score + "";
+      String newComment = commentInput + "      (Sentiment Score: " + str + ")";
       comments.add(newComment);
     }
 
@@ -70,7 +80,7 @@ public class DataServlet extends HttpServlet {
     String commentInput = request.getParameter("commentInput");
     long timestamp = System.currentTimeMillis();
 
-    //creating entity of Comment kind with commentInput and timestamp properties
+    //creating entity of Comment kind with commentInput, timestamp, and sentiment properties
     Entity commentEntity = new Entity("Comment");
     commentEntity.setProperty("commentInput", commentInput);
     commentEntity.setProperty("timestamp", timestamp);
