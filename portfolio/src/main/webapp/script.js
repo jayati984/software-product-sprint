@@ -38,7 +38,7 @@ function loadComments() {
   });
 }
 
-/** Creates an element that represents a task, including its delete button. */
+/** Creates an element that represents a task. */
 function createCommentElement(comment) {
   const commentElement = document.createElement('li');
   commentElement.className = 'comment';
@@ -156,7 +156,7 @@ function createMap() {
       'I travelled to India to meet family and it truly has a great sense of culture.');
     addLandmark(
       map, 51.30, 32.8718, 'London',
-      'One of the great places I have travelled to.');
+      'Visiting London was the first time I saw snow.');
 }
 
 /** Adds a marker that shows an info window when clicked. */
@@ -167,5 +167,32 @@ function addLandmark(map, lat, lng, title, description) {
   const infoWindow = new google.maps.InfoWindow({content: description});
   marker.addListener('click', () => {
     infoWindow.open(map, marker);
+  });
+}
+
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+/** Fetches color data and uses it to create a chart. */
+function drawChart() {
+  fetch('/music-data').then(response => response.json())
+  .then((genreVotes) => {
+    const data = new google.visualization.DataTable();
+    data.addColumn('string', 'Music Genre');
+    data.addColumn('number', 'Votes');
+    Object.keys(genreVotes).forEach((genre) => {
+      data.addRow([genre, genreVotes[genre]]);
+    });
+
+    const options = {
+      'title': 'WHAT IS YOUR FAVORTIE MUSIC GENRE',
+      'width':600,
+      'height':500,
+      'colors': ['#FF9AA2']
+    };
+
+    const chart = new google.visualization.ColumnChart(
+        document.getElementById('chart-container'));
+    chart.draw(data, options);
   });
 }

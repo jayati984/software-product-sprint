@@ -2,13 +2,15 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>My Portfolio</title>
+    <title>MY PORTFOLIO</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="script.js"></script>
   </head>
   <body onload="loadComments(); createMap()">
-    <div style="text-align:center" id="content">
-      <h1>Jayati Patel's Portfolio</h1>
+    <div style="text-align:center" id="content" class="box">
+      <h1>JAYATI PATEL'S PORTFOLIO</h1>
+
       <p>I am a 3rd year student at Santa Clara University studying Computer Science with 
           a Data Science Emphasis. I was born in Harare, Zimbabwe and moved here to the US 
           for college. At Santa Clara University, I enjoy taking the Computer Science and Math
@@ -16,45 +18,75 @@
           research in IoT, being a Teaching Assistant, and being a Tutor. Outside of classes, I enjoy singing
           as part of the Santa Clara University Concert Choir where I get to fully destress and have fun!
       </p>
-      
-      <h3>More About Me</h3>
 
-      <p>What I enjoy/like:
+      <p>
+      <h1>WHAT I ENJOY/LIKE:</h1>
         <ul>
-            <li>Travelling and visiting new places with my family and friends - San Francisco and Washington D.C. have been my favorite!</li>
-            <li>Taking long walks - it's so peaceful and relaxing!</li>
-            <li>Having brunch!</li>
-            <li>Trying new cafes!</li>
-            <li>Organizing!</li>
-            <li>Anything Mint flavored!</li>
+            <li><a>FACT 1</a><ul><li>Travelling and visiting new places with my family and friends - San Francisco and Washington D.C. have been my favorite!</ul></li>
+            <li><a>FACT 2</a><ul><li>Taking long walks - it's so peaceful and relaxing!</li></ul></li>
+            <li><a>FACT 3</a><ul><li>Having brunch!</li></ul></li>
+            <li><a>FACT 4</a><ul><li>Trying new cafes!</li></ul></li>
+            <li><a>FACT 5</a><ul><li>Organizing!</li></ul></li>
+            <li><a>FACT 6</a><ul><li>Anything Mint flavored!</li></ul></li>
         </ul>
       </p>
 
+      <hr>
+
       <img src="images/image-1.png" width=300 height=300/>
-      <p>(My twin sister and I)</p>
-      
-      <p>Click <a href="image.html">here</a> to see more pictures!</p>
+      <img src="images/images-1.JPG" width=400 height=300/>
+      <img src="images/images-2.JPEG" width=400 height=300/>
+      <img src="images/image-2.png" width=300 height=300/>
+
+      <hr>
 
       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRW8wrUL6_NAMyDXiXoeZF-X7G_j_96ts"></script>
+      <h1>CLICK ON THE MARKERS TO VIEW THE COUNTRIES I HAVE VISITED!</h1>
       <div id="map"></div>
 
-      <p>Click <a href="https://www.linkedin.com/in/jayati-patel">here</a> to connect with me on LinkedIn!</p>
+      <hr>
       
-      <p>Click here to get a random quote:</p>
-      <button onclick="addRandomQuote()">Quotes</button>
+      <h1>WHAT IS YOUR FAVORITE MUSIC GENRE?</h1>
+      <p>VOTE</p>
+      <form action="/music-data" method="POST">
+        <select name="genre">
+          <option value="Rock">Rock</option>
+          <option value="R&B">R&B</option>
+          <option value="Pop">Pop</option>
+          <option value="Country">Country</option>
+          <option value="Blues">Blues</option>
+          <option value="Hip-Hop">Hip-Hop</option>
+          <option value="Electronic Dance Music">EDM</option>
+          <option value="Christian/Gospel">Christian/Gospel</option>
+          <option value="Classical/Opera">Classical/Opera</option>
+          <option value="Jazz">Jazz</option>
+          <option value="Heavy Metal">Heavy Metal</option>
+        </select>
+        </br>
+        <button>SUBMIT</button>
+      </form>
+      <div id="chart-container"></div>
+
+      <hr>
+      
+      <h1>CLICK HERE TO GET A RANDOM QUOTE:</h1>
+      <button onclick="addRandomQuote()">QUOTES</button>
       <div id="quote-container"></div>
 
+      <hr>
       <form method="POST" action="/data">
-      <p>Comment Section:</p>
+      <h1>COMMENT SECTION & SENTIMENT ANALYSIS SCORE:</h1>
       <input type="text" name="commentInput" />
       <br/>
-      <button>Submit</button>
+      <button>SUBMIT</button>
       </form>
     
       </hr>
 
+      <hr>
+      <section>
       <ul id="comment-list"></ul>
-
+      </section>
     </div>
   </body>
 </html>
